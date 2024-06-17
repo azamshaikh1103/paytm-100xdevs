@@ -1,17 +1,17 @@
 import express from "express";
-import { connection } from "./db.js";
-import Router from "./routes/userRoutes.js";
-import bodyParser from "body-parser";
 import cors from "cors";
-import jsonwebtoken from "jsonwebtoken";
+import { connection } from "./db.js";
+import bodyParser from 'body-parser'
+import Router from "./routes/userRoutes.js";
 const app = express();
 const PORT = 3000;
 
-app.use("/api/v1", Router);
-app.use(bodyParser.json());
-app.use(cors());
-
 connection();
+
+app.use(express.json());
+app.use(cors());
+app.use("/api/v1", Router);
+
 
 app.listen(PORT, () => {
   console.log(`Server running at port : ${PORT}`);

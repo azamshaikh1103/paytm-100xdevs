@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export const connection = async () => {
   await mongoose
-    .connect(url)
+    .connect("mongodb://localhost:27017/paytm")
     .then(() => {
       console.log("DB connected successfully");
     })

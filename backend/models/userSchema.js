@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  first_name: {
+  firstname: {
     type: String,
     require: true,
     minLength: [3, "Username can't be less than 3 Characters"],
     maxLength: [30, "Username can't be more than 30 Characters"],
   },
 
-  last_name: {
+  lastname: {
     type: String,
     require: true,
     minLength: [3, "Username can't be less than 3 Characters"],
@@ -25,10 +25,24 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     require: true,
-    minLength: [8, "Password can't be less than 8 Characters"],
+    minLength: [6, "Password can't be less than 6 Characters"],
   },
 });
 
+const accountSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    // Reference to User model
+    ref: "User",
+    required: true,
+  },
+  balance: {
+    type: Number,
+    required: true,
+  },
+});
+
+const Account = mongoose.model("Account", accountSchema);
 const User = mongoose.model("User", userSchema);
 
-export default User;
+export { Account, User };
