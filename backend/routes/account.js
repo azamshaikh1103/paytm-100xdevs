@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import { authMiddleware } from "../middleware.js";
 import { Account } from "../models/userSchema.js";
 
@@ -50,7 +51,6 @@ accRouter.post("/transfer", authMiddleware, async (req, res) => {
   ).session(session);
 
   await session.commitTransaction();
-
   res.json({
     message: "Transfer successful",
   });

@@ -43,14 +43,13 @@ Router.post("/signup", async (req, res) => {
   const userId = dbUser._id;
 
   await Account.create({
-      userId,
-      balance: 1 + Math.random() * 10000,
-  })
-
+    userId,
+    balance: 1 + Math.random() * 10000,
+  });
 
   const token = jwt.sign(
     {
-      userId
+      userId,
     },
     JWT_SECRET
   );
@@ -99,7 +98,7 @@ Router.get("/bulk", async (req, res) => {
   res.json({
     user: users.map((user) => ({
       username: user.username,
-      firstnme: user.firstname,
+      firstname: user.firstname,
       lastname: user.lastname,
       _id: user._id,
     })),
